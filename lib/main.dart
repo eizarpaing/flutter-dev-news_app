@@ -3,18 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:networking_demo/widgets/newsList.dart';
 
 void main() => runApp(TabbedAppBarSample());
-
-
-// class App extends StatelessWidget {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: "Networking",
-//       home: NewsList()
-//     );
-//   }
-// }
+const color1 = const Color(0xff336699);
+const color2 = const Color(0xff666666);
 
 class TabbedAppBarSample extends StatelessWidget {
   @override
@@ -24,16 +14,26 @@ class TabbedAppBarSample extends StatelessWidget {
         length: choices.length,
         child: Scaffold(
           appBar: AppBar(
-            title: const Text('Watch News'),
+            title: const Text('Watch News', style: TextStyle(color: Colors.white),),
+            backgroundColor: color1,
+            elevation: 10,
             bottom: TabBar(
-              isScrollable: true,
-              tabs: choices.map((Choice choice) {
-                return Tab(
-                  text: choice.title,
-                  icon: Icon(choice.icon),
-                );
-              }).toList(),
-            ),
+              labelColor: Colors.black,
+              indicatorColor: Colors.black,
+              unselectedLabelColor: Colors.white,
+              indicatorSize: TabBarIndicatorSize.label,
+              indicator: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              isScrollable: true, 
+              tabs: [
+              tabitem("News"),
+              tabitem("Sport"),
+              tabitem("Transport"),
+              tabitem("Food"),
+              tabitem("Health"),
+              tabitem("Beauty")
+            ]),
           ),
           body: TabBarView(
             children: choices.map((Choice choice) {
@@ -47,6 +47,22 @@ class TabbedAppBarSample extends StatelessWidget {
       ),
     );
   }
+}
+
+Tab tabitem(String text) {
+  return Tab(
+    child: Container(
+      width: 80,
+      height: 80,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.white, width: 1)),
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(text),
+      ),
+    ),
+  );
 }
 
 class Choice {
@@ -65,7 +81,6 @@ const List<Choice> choices = const <Choice>[
   const Choice(title: 'Beauty', icon: Icons.camera),
 ];
 
-
 class ChoiceCard extends StatelessWidget {
   const ChoiceCard({Key key, this.choice}) : super(key: key);
 
@@ -73,22 +88,11 @@ class ChoiceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextStyle textStyle = Theme.of(context).textTheme.display1;
     Widget child;
-    if(choice.title == 'News') {
+    if (choice.title == 'News') {
       child = NewsList();
-    }else {
+    } else {
       child = NewsList();
-      // child = Center(
-      //   child: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     crossAxisAlignment: CrossAxisAlignment.center,
-      //     children: <Widget>[
-      //       Icon(choice.icon, size: 128.0, color: textStyle.color),
-      //       Text(choice.title, style: textStyle),
-      //     ],
-      //   ),
-      // );
     }
     return Card(
       color: Colors.white,

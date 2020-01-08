@@ -1,4 +1,4 @@
-# networking_demo
+# News App
 
 A new Flutter project.
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:networking_demo/models/newsArticle.dart';
 import 'package:intl/intl.dart';
 
+const color = const Color(0xff336699);
+
 class DetailPage extends StatelessWidget {
   final NewsArticle newsarticle;
   const DetailPage({Key key, this.newsarticle}) : super(key: key);
@@ -13,6 +15,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Deatil Page"),
+        backgroundColor: color,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
