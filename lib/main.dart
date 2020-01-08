@@ -19,9 +19,9 @@ class TabbedAppBarSample extends StatelessWidget {
             elevation: 10,
             bottom: TabBar(
               labelColor: Colors.black,
-              indicatorColor: Colors.black,
               unselectedLabelColor: Colors.white,
               indicatorSize: TabBarIndicatorSize.label,
+              labelPadding: EdgeInsets.symmetric(horizontal: 3),
               indicator: BoxDecoration(
                 borderRadius: BorderRadius.circular(30),
               ),
@@ -38,7 +38,7 @@ class TabbedAppBarSample extends StatelessWidget {
           body: TabBarView(
             children: choices.map((Choice choice) {
               return Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(10.0),
                 child: ChoiceCard(choice: choice),
               );
             }).toList(),
@@ -53,7 +53,6 @@ Tab tabitem(String text) {
   return Tab(
     child: Container(
       width: 80,
-      height: 80,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(30),
           border: Border.all(color: Colors.white, width: 1)),
