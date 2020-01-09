@@ -28,8 +28,15 @@ class NewsListState extends State<NewsList> {
 
   ListTile _buildItemsForListView(BuildContext context, int index) {
       return ListTile(
-        title: _newsArticles[index].urlToImage == null ? Image.asset(Constants.NEWS_PLACEHOLDER_IMAGE_ASSET_URL) : Image.network(_newsArticles[index].urlToImage), 
-        subtitle: Text(_newsArticles[index].title, style: TextStyle(fontSize: 18)),
+        leading: SizedBox(
+          height: 100.0,
+          width: 100.0, 
+          child: _newsArticles[index].urlToImage == null ? Image.asset(Constants.NEWS_PLACEHOLDER_IMAGE_ASSET_URL) : Image.network(_newsArticles[index].urlToImage),
+        ),
+        title: Text(_newsArticles[index].title),
+        trailing: Icon(Icons.favorite),
+        // title: _newsArticles[index].urlToImage == null ? Image.asset(Constants.NEWS_PLACEHOLDER_IMAGE_ASSET_URL) : Image.network(_newsArticles[index].urlToImage), 
+        // subtitle: Text(_newsArticles[index].title, style: TextStyle(fontSize: 18)),
         //onTap: () => Scaffold.of(context).showSnackBar(SnackBar(content: Text(index.toString()))),
         onTap: () {
             Navigator.push(
