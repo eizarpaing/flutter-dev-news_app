@@ -14,7 +14,7 @@ class DetailPage extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Deatil Page"),
+        title: Text("Deatils"),
         backgroundColor: color,
       ),
       floatingActionButton: FloatingActionButton(
