@@ -13,38 +13,85 @@ class DetailPage extends StatelessWidget {
     var strToday = getStrToday();
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Deatils"),
-        backgroundColor: color,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.share),
-        mini: true,
-      ),
-      body: ListView(
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Image.network(newsarticle.urlToImage),
-          Container(
-            padding: const EdgeInsets.only(top: 10, left: 20),
-            child: Text(strToday, 
-            style: TextStyle(color: Colors.black45, fontSize: 14.0),),
-          ),
-          Container(
-            padding: const EdgeInsets.all(20),
-            child: Text(newsarticle.title, 
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),),
-          ),
-          Container(
-            padding: const EdgeInsets.only(left: 20, right: 20),
-            child: Text(newsarticle.descrption, softWrap: true, 
-            style: TextStyle(color: Colors.black45, fontSize: 16.0),),
-          ),
-        ],
+      body: Center(
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              title: Text('Details'),
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: Icon(Icons.share),
+                )
+              ],
+              backgroundColor: Color(0xff336699),
+              expandedHeight: 300.0,
+              flexibleSpace: FlexibleSpaceBar(
+                  background:
+                      Image.network(newsarticle.urlToImage, fit: BoxFit.cover)),
+            ),
+            SliverFixedExtentList(
+              itemExtent: 800.0,
+              delegate: SliverChildListDelegate([
+                Column(
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Text(
+                        newsarticle.title,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18.0),
+                      ),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Text(
+                        newsarticle.descrption,
+                        softWrap: true,
+                        style: TextStyle(color: Colors.black45, fontSize: 16.0),
+                      ),
+                    ),
+                  ],
+                )
+              ]),
+            ),
+          ],
+        ),
       ),
     );
 
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text("Deatils"),
+    //     backgroundColor: color,
+    //   ),
+    //   floatingActionButton: FloatingActionButton(
+    //     onPressed: () {},
+    //     child: Icon(Icons.share),
+    //     mini: true,
+    //   ),
+    //   body: ListView(
+    //     // crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: <Widget>[
+    //       Image.network(newsarticle.urlToImage),
+    //       Container(
+    //         padding: const EdgeInsets.only(top: 10, left: 20),
+    //         child: Text(strToday,
+    //         style: TextStyle(color: Colors.black45, fontSize: 14.0),),
+    //       ),
+    //       Container(
+    //         padding: const EdgeInsets.all(20),
+    //         child: Text(newsarticle.title,
+    //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),),
+    //       ),
+    //       Container(
+    //         padding: const EdgeInsets.only(left: 20, right: 20),
+    //         child: Text(newsarticle.descrption, softWrap: true,
+    //         style: TextStyle(color: Colors.black45, fontSize: 16.0),),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   String getStrToday() {

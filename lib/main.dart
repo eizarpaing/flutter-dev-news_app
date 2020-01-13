@@ -96,7 +96,7 @@ class ChoiceCard extends StatelessWidget {
     Widget child;
     if (choice.title == 'News') {
       child = NewsList();
-    } else if (choice.title == 'Beauty') {
+    } else if (choice.title == 'Sport') {
       child = BeaudyList();
     } else {
       child = NewsList();
