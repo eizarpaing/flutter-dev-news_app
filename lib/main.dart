@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:networking_demo/widgets/newsList.dart';
 
+import 'widgets/beauty.dart';
+
 void main() => runApp(TabbedAppBarSample());
 const color1 = const Color(0xff043361); //336699
 const color2 = const Color(0xff666666);
@@ -10,6 +12,7 @@ class TabbedAppBarSample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: choices.length,
         child: Scaffold(
@@ -94,7 +97,7 @@ class ChoiceCard extends StatelessWidget {
     if (choice.title == 'News') {
       child = NewsList();
     } else if (choice.title == 'Beauty') {
-      child = NewsList();
+      child = BeaudyList();
     } else {
       child = NewsList();
     }
