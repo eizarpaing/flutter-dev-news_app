@@ -5,6 +5,7 @@ import 'package:networking_demo/models/newsArticle.dart';
 import 'package:networking_demo/services/webservice.dart';
 import 'package:networking_demo/utils/constants.dart';
 import 'package:networking_demo/widgets/detail_page.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class NewsListState extends State<NewsList> {
 
@@ -53,10 +54,22 @@ class NewsListState extends State<NewsList> {
         // appBar: AppBar(
         //   title: Text('News'),
         // ),
-        body: ListView.builder(
-          itemCount: _newsArticles.length,
-          itemBuilder: _buildItemsForListView,
+        body: new StaggeredGridView.countBuilder(
+  crossAxisCount: 4,
+  itemCount: 8,
+  itemBuilder: (BuildContext context, int index) => new Container(
+      color: Colors.green,
+      child: new Center(
+        child: new CircleAvatar(
+          backgroundColor: Colors.white,
+          child: new Text('$index'),
         ),
+      )),
+  staggeredTileBuilder: (int index) =>
+      new StaggeredTile.count(2, index.isEven ? 2 : 1),
+  mainAxisSpacing: 4.0,
+  crossAxisSpacing: 4.0,
+)
     );
       //   body: ListView.builder(
       //     itemCount: _newsArticles.length,
