@@ -5,10 +5,11 @@ import 'package:networking_demo/services/webservice.dart';
 import 'package:networking_demo/utils/constants.dart';
 import 'package:networking_demo/widgets/detail_page.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:networking_demo/widgets/favoriteList.dart';
 
 class NewsListState extends State<NewsList> {
   List<NewsArticle> _newsArticles = List<NewsArticle>();
-  Set<NewsArticle> _savedArticles = Set<NewsArticle>();
+  List<NewsArticle> _savedArticles = List<NewsArticle>();
   final TextStyle _biggerFont = TextStyle(fontSize: 18.0);
   bool _saving = false;
 
@@ -126,32 +127,12 @@ class NewsListState extends State<NewsList> {
   }
 
   void _pushSaved() {
-      Navigator.of(context).push(
-        MaterialPageRoute<void>(
-          builder: (BuildContext context){
-            final Iterable<ListTile> tiles = _savedArticles.map(
-              (NewsArticle pair) {
-                return ListTile (
-                  title: Text(
-                    pair.title,
-                    style: _biggerFont,
-                  ),
-                );
-              }
-            );
-            final List<Widget> divided = ListTile.divideTiles(
-              context: context,
-              tiles: tiles,
-            ).toList();
-            return Scaffold(
-              appBar: AppBar(
-                title: Text('Saved Suggestions'),
-              ),
-              body: ListView(children: divided)
-            );
-          },
-        ),
-      );
+      Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    FavoriteList(savedNewsArticle: _savedArticles))
+                    );
     }
 }
 
