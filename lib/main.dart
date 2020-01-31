@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:networking_demo/widgets/newsList.dart';
+import 'package:news/widgets/newsList.dart';
 
 import 'widgets/beauty.dart';
 

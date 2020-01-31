@@ -1,7 +1,7 @@
 
 import 'dart:convert';
-import 'package:networking_demo/services/webservice.dart';
-import 'package:networking_demo/utils/constants.dart';
+import 'package:news/services/webservice.dart';
+import 'package:news/utils/constants.dart';
 
 class NewsArticle {
   

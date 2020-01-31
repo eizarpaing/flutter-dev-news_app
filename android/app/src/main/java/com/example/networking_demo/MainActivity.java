@@ -1,4 +1,4 @@
-package com.example.networking_demo;
+package com.example.news;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

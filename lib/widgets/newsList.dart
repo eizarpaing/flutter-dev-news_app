@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:networking_demo/models/newsArticle.dart';
-import 'package:networking_demo/services/webservice.dart';
-import 'package:networking_demo/utils/constants.dart';
-import 'package:networking_demo/widgets/detail_page.dart';
+import 'package:news/models/newsArticle.dart';
+import 'package:news/services/webservice.dart';
+import 'package:news/utils/constants.dart';
+import 'package:news/widgets/detail_page.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:networking_demo/widgets/favoriteList.dart';
+import 'package:news/widgets/favoriteList.dart';
 
 class NewsListState extends State<NewsList> {
   List<NewsArticle> _newsArticles = List<NewsArticle>();

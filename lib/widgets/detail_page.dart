@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:networking_demo/models/newsArticle.dart';
+import 'package:news/models/newsArticle.dart';
 import 'package:intl/intl.dart';
 
 const color = const Color(0xff336699);

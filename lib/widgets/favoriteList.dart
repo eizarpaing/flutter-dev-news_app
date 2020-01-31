@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:networking_demo/models/newsArticle.dart';
+import 'package:news/models/newsArticle.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-import 'package:networking_demo/utils/constants.dart';
-import 'package:networking_demo/widgets/detail_page.dart';
+import 'package:news/utils/constants.dart';
+import 'package:news/widgets/detail_page.dart';
 
 const color1 = const Color(0xff043361); 
 
