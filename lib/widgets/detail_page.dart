@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:news/models/newsArticle.dart';
 import 'package:intl/intl.dart';
+import 'package:news/widgets/login_page.dart';
 
 const color = const Color(0xff336699);
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final NewsArticle newsarticle;
   const DetailPage({Key key, this.newsarticle}) : super(key: key);
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
 
+class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     var strToday = getStrToday();
@@ -21,14 +26,17 @@ class DetailPage extends StatelessWidget {
               actions: <Widget>[
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
-                  child: Icon(Icons.share),
+                  child: IconButton(
+                    icon: new Icon(Icons.share),
+                    onPressed: _shareFB,
+                  )
                 )
               ],
               backgroundColor: Color(0xff336699),
               expandedHeight: 300.0,
               flexibleSpace: FlexibleSpaceBar(
                   background:
-                      Image.network(newsarticle.urlToImage, fit: BoxFit.cover)),
+                      Image.network(widget.newsarticle.urlToImage, fit: BoxFit.cover)),
             ),
             SliverFixedExtentList(
               itemExtent: 800.0,
@@ -38,7 +46,7 @@ class DetailPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(20),
                       child: Text(
-                        newsarticle.title,
+                        widget.newsarticle.title,
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 18.0),
                       ),
@@ -46,7 +54,7 @@ class DetailPage extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Text(
-                        newsarticle.descrption,
+                        widget.newsarticle.descrption,
                         softWrap: true,
                         style: TextStyle(color: Colors.black45, fontSize: 16.0),
                       ),
@@ -59,40 +67,16 @@ class DetailPage extends StatelessWidget {
         ),
       ),
     );
-
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("Deatils"),
-    //     backgroundColor: color,
-    //   ),
-    //   floatingActionButton: FloatingActionButton(
-    //     onPressed: () {},
-    //     child: Icon(Icons.share),
-    //     mini: true,
-    //   ),
-    //   body: ListView(
-    //     // crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: <Widget>[
-    //       Image.network(newsarticle.urlToImage),
-    //       Container(
-    //         padding: const EdgeInsets.only(top: 10, left: 20),
-    //         child: Text(strToday,
-    //         style: TextStyle(color: Colors.black45, fontSize: 14.0),),
-    //       ),
-    //       Container(
-    //         padding: const EdgeInsets.all(20),
-    //         child: Text(newsarticle.title,
-    //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),),
-    //       ),
-    //       Container(
-    //         padding: const EdgeInsets.only(left: 20, right: 20),
-    //         child: Text(newsarticle.descrption, softWrap: true,
-    //         style: TextStyle(color: Colors.black45, fontSize: 16.0),),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
+
+  void _shareFB() {
+      Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    LoginPage())
+                    );
+    }
 
   String getStrToday() {
     var today = DateFormat().add_yMMMMd().format(DateTime.now());
