@@ -15,9 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   Map userProfile;
   final facebookLogin = FacebookLogin();
 
-  _loginWithFB() async{
-
-    
+  _loginWithFB() async{ 
     final result = await facebookLogin.logInWithReadPermissions(['email']);
 
     switch (result.status) {
