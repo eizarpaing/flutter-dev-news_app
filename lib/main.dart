@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:news/widgets/menu.dart';
 import 'package:news/widgets/newsList.dart';
 
 import 'widgets/beauty.dart';
@@ -8,7 +9,29 @@ void main() => runApp(TabbedAppBarSample());
 const color1 = const Color(0xff043361); //336699
 const color2 = const Color(0xff666666);
 
-class TabbedAppBarSample extends StatelessWidget {
+class TabbedAppBarSample extends StatefulWidget {
+  @override
+  _TabbedAppBarSampleState createState() => _TabbedAppBarSampleState();
+}
+
+class _TabbedAppBarSampleState extends State<TabbedAppBarSample>
+    with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  int itemIndex = 0;
+  int selectedIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = new TabController(vsync: this, length: choices.length);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _tabController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -21,9 +44,19 @@ class TabbedAppBarSample extends StatelessWidget {
               'Watch News',
               style: TextStyle(color: Colors.white),
             ),
+            actions: <Widget>[
+              IconButton(
+                icon: Icon(
+                  Icons.notifications,
+                  size: 30,
+                ),
+                onPressed: () {},
+              )
+            ],
             backgroundColor: color1,
             elevation: 10,
             bottom: TabBar(
+                controller: _tabController,
                 labelColor: Colors.amber,
                 unselectedLabelColor: Colors.white,
                 indicatorSize: TabBarIndicatorSize.label,
@@ -33,16 +66,28 @@ class TabbedAppBarSample extends StatelessWidget {
                 ),
                 isScrollable: true,
                 tabs: [
-                  tabitem("News"),
-                  tabitem("Sport"),
-                  tabitem("Transport"),
-                  tabitem("Food"),
+                  tabitem("COVID-19"),
+                  tabitem("Local"),
+                  tabitem("Social Life"),
+                  tabitem("Sports"),
                   tabitem("Health"),
-                  tabitem("Beauty")
+                  tabitem("Beauty"),
+                  tabitem("Tech"),
+                  tabitem("Joke"),
+                  tabitem("Crime"),
+                  tabitem("Food"),
+                  tabitem("Travel")
                 ]),
           ),
           body: TabBarView(
+            controller: _tabController,
             children: choices.map((Choice choice) {
+              //   setState(() {
+              //     var itemIndex = choices.indexOf(choice);
+              //  var selectedIndex = _tabController.index;
+
+              //   });
+
               return Padding(
                 padding: const EdgeInsets.all(5.0),
                 child: ChoiceCard(choice: choice),
@@ -78,12 +123,17 @@ class Choice {
 }
 
 const List<Choice> choices = const <Choice>[
-  const Choice(title: 'News', icon: Icons.book),
-  const Choice(title: 'Sport', icon: Icons.directions_bike),
-  const Choice(title: 'Transport', icon: Icons.directions_railway),
-  const Choice(title: 'Food', icon: Icons.cake),
+  const Choice(title: 'COVID-19', icon: Icons.book),
+  const Choice(title: 'Local', icon: Icons.directions_bike),
+  const Choice(title: 'Socal Life', icon: Icons.directions_railway),
+  const Choice(title: 'Sports', icon: Icons.cake),
   const Choice(title: 'Health', icon: Icons.directions_walk),
   const Choice(title: 'Beauty', icon: Icons.camera),
+  const Choice(title: 'Tech', icon: Icons.book),
+  const Choice(title: 'Joke', icon: Icons.directions_bike),
+  const Choice(title: 'Crime', icon: Icons.directions_railway),
+  const Choice(title: 'Food', icon: Icons.cake),
+  const Choice(title: 'Travel', icon: Icons.directions_walk),
 ];
 
 class ChoiceCard extends StatelessWidget {

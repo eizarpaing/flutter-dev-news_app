@@ -6,6 +6,7 @@ import 'package:news/utils/constants.dart';
 import 'package:news/widgets/detail_page.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:news/widgets/favoriteList.dart';
+import 'package:news/widgets/menu.dart';
 
 class NewsListState extends State<NewsList> {
   List<NewsArticle> _newsArticles = List<NewsArticle>();
@@ -67,7 +68,9 @@ class NewsListState extends State<NewsList> {
               flex: 1,
               child: IconButton(
                 icon: new Icon(
-                  isSaved(_newsArticles[index]) ? Icons.favorite : Icons.favorite_border,
+                  isSaved(_newsArticles[index])
+                      ? Icons.favorite
+                      : Icons.favorite_border,
                   color: Color(0xff336699),
                 ),
                 onPressed: () {
@@ -75,7 +78,6 @@ class NewsListState extends State<NewsList> {
                     pressedFavorite(_newsArticles[index]);
                   });
                 },
-                
               ),
             )
           ],
@@ -92,48 +94,53 @@ class NewsListState extends State<NewsList> {
   }
 
   void pressedFavorite(NewsArticle index) {
-    if(isSaved(index))
-     _savedArticles.remove(index);
+    if (isSaved(index))
+      _savedArticles.remove(index);
     else
       _savedArticles.add(index);
   }
 
-  bool isSaved(NewsArticle index){
+  bool isSaved(NewsArticle index) {
     return _savedArticles.contains(index);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: IconButton(
-          icon: Icon(Icons.favorite,
-          color: Colors.white,
+        floatingActionButton: FloatingActionButton(
+          child: IconButton(
+            icon: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ),
+          ),
+          backgroundColor: Color(0xff336699),
+          onPressed: _pushSaved,
         ),
-      ),
-        backgroundColor: Color(0xff336699),
-        onPressed: _pushSaved,
-      ),
         body: ModalProgressHUD(
-      child: ListView.builder(
-        itemCount: _newsArticles.length,
-        itemBuilder: _cardItem,
-      ),
-      inAsyncCall: _saving,
-      color: Colors.white,
-      progressIndicator:
-          CircularProgressIndicator(backgroundColor: Colors.amber, valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff043361)),),
-    ));
+          child: ListView.builder(
+            itemCount: _newsArticles.length,
+            itemBuilder: _cardItem,
+          ),
+          inAsyncCall: _saving,
+          color: Colors.white,
+          progressIndicator: CircularProgressIndicator(
+            backgroundColor: Colors.amber,
+            valueColor: new AlwaysStoppedAnimation<Color>(Color(0xff043361)),
+          ),
+        ));
   }
 
   void _pushSaved() {
-      Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    FavoriteList(savedNewsArticle: _savedArticles))
-                    );
-    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => MenuPage()));
+    // Navigator.push(
+    //       context,
+    //       MaterialPageRoute(
+    //           builder: (context) =>
+    //               FavoriteList(savedNewsArticle: _savedArticles))
+    //               );
+  }
 }
 
 class NewsList extends StatefulWidget {

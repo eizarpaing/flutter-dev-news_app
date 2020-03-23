@@ -1,11 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/pc011/development/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/pc011/development/proj/news"
-export "FLUTTER_TARGET=/Users/pc011/development/proj/news/lib/main.dart"
+export "FLUTTER_ROOT=/Users/macpro001/Developer/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/macpro001/Documents/NewsApp/flutter-dev-news_app"
+export "FLUTTER_TARGET=/Users/macpro001/Documents/NewsApp/flutter-dev-news_app/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
-export "FLUTTER_FRAMEWORK_DIR=/Users/pc011/development/flutter/bin/cache/artifacts/engine/ios"
+export "FLUTTER_FRAMEWORK_DIR=/Users/macpro001/Developer/flutter/bin/cache/artifacts/engine/ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
 export "TRACK_WIDGET_CREATION=true"
